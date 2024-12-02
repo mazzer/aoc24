@@ -1,11 +1,10 @@
-from pathlib import Path
 import itertools
+
+from aoc24 import read_input_file
 
 
 def read_file() -> list[list[int]]:
-    lines = (Path(__file__).parent.parent / "inputs/day02").read_text().splitlines()
-
-    return [list(map(int, line.split())) for line in lines]
+    return [list(map(int, line.split())) for line in read_input_file("day02")]
 
 
 def check_report(reports: list[int]) -> bool:
@@ -38,6 +37,6 @@ def part2() -> int:
     return safe_lines
 
 
-if __name__ == '__main__':
+def solve():
     print(part1())
     print(part2())

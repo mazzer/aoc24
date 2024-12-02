@@ -1,0 +1,24 @@
+[project]
+name = "aoc24"
+version = "2024.11"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+indent-width = 4
+fix = true
+
+[tool.ruff.lint]
+extend-select = [
+    "I", # flake8-import-order
+]
+
+[project.scripts]
+day01 = "aoc24.day01:solve"
+day02 = "aoc24.day02:solve"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
