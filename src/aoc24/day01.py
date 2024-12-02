@@ -1,10 +1,10 @@
 from collections import Counter
-from pathlib import Path
+
+from aoc24 import read_input_file
 
 
 def read_file() -> tuple[list[int], list[int]]:
-    lines = (Path(__file__).parent.parent / "inputs/day01").read_text().splitlines()
-    left, right = zip(*[map(int, line.split()) for line in lines])
+    left, right = zip(*[map(int, line.split()) for line in read_input_file("day01")])
 
     return sorted(left), sorted(right)
 
@@ -25,6 +25,6 @@ def part2() -> int:
     return score
 
 
-if __name__ == '__main__':
+def solve():
     print(part1())
     print(part2())
