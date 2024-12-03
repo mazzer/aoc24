@@ -13,24 +13,18 @@ def part1() -> int:
 
 
 def part2():
+    pattern = re.compile(r"(mul\((\d+),(\d+)\)|don't\(\)|do\(\))")
+
     result = 0
-    pattern = re.compile(r"mul\((\d+),(\d+)\)")
-
-    line = read_file()
     should_multiply = True
-
-    while line:
-        if should_multiply:
-            if (read_to := line.find("don't()")) == -1:
-                read_to = len(line)
-
-            result += sum(int(a) * int(b) for a, b in pattern.findall(line[:read_to]))
-
-            line = line[read_to:]
-            should_multiply = False
-        else:
-            line = line[line.find("do()") :]
-            should_multiply = True
+    for instruction, a, b in pattern.findall(read_file()):
+        match instruction:
+            case "do()":
+                should_multiply = True
+            case "don't()":
+                should_multiply = False
+            case _ if should_multiply:
+                result += int(a) * int(b)
 
     return result
 
