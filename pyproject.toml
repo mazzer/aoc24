@@ -18,6 +18,7 @@ extend-select = [
 [project.scripts]
 day01 = "aoc24.day01:solve"
 day02 = "aoc24.day02:solve"
+day03 = "aoc24.day03:solve"
 
 [build-system]
 requires = ["hatchling"]
