@@ -22,6 +22,7 @@ day03 = "aoc24.day03:solve"
 day04 = "aoc24.day04:solve"
 day05 = "aoc24.day05:solve"
 day06 = "aoc24.day06:solve"
+day07 = "aoc24.day07:solve"
 
 [build-system]
 requires = ["hatchling"]
