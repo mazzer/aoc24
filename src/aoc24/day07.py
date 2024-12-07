@@ -2,7 +2,7 @@ import itertools
 
 from aoc24 import read_input_file
 
-OPERATORS = ["+", "*"]
+OPERATORS = ["+", "*", "||"]
 
 
 def read_file() -> list[tuple[int, list[int]]]:
@@ -16,7 +16,7 @@ def read_file() -> list[tuple[int, list[int]]]:
     return result
 
 
-def check_line(expected_sum: int, line: list[int]) -> bool:
+def check_line(expected_sum: int, line: list[int], concat_op=False) -> bool:
     for operators in itertools.product(OPERATORS, repeat=len(line) - 1):
         result = line[0]
 
@@ -24,15 +24,10 @@ def check_line(expected_sum: int, line: list[int]) -> bool:
             match op:
                 case "+":
                     result += line[i]
-                case "-":
-                    result -= line[i]
                 case "*":
                     result *= line[i]
-                case "/":
-                    if line[i] == 0:
-                        break
-
-                    result /= line[i]
+                case "||" if concat_op:
+                    result = int(str(result) + str(line[i]))
 
             if result > expected_sum:
                 break
@@ -52,9 +47,14 @@ def part1() -> int:
     return r
 
 
-def part2(): ...
+def part2():
+    r = 0
+    for expected_sum, line in read_file():
+        if check_line(expected_sum, line, concat_op=True):
+            r += expected_sum
+
+    return r
 
 
-def solve():
-    print(part1())
-    print(part2())
+print(part1())
+print(part2())
