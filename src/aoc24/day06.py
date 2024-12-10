@@ -8,6 +8,12 @@ def read_file() -> list[str]:
 
 
 def part1() -> int:
+    visited_positions = simulate_guard_movement()
+
+    return len(visited_positions)
+
+
+def simulate_guard_movement():
     grid = read_file()
 
     for row_idx, row in enumerate(grid):
@@ -16,7 +22,6 @@ def part1() -> int:
             break
 
     visited_positions = {guard_pos}
-
     direction = MOVEMENTS[0]
 
     while True:
@@ -39,6 +44,15 @@ def part1() -> int:
 
         visited_positions.add(new_position)
         guard_pos = new_position
+
+    return visited_positions
+
+
+def part2():
+    visited_positions = simulate_guard_movement()
+
+    for row_idx, col_idx in visited_positions:
+        pass
 
     return len(visited_positions)
 
