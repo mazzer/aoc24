@@ -36,7 +36,18 @@ def part1() -> int:
     return sum(line.count("XMAS") + line.count("SAMX") for line in lines)
 
 
-def part2(): ...
+def part2() -> int:
+    grid = read_file()
+    diagonal_chars = {"S", "M"}
+
+    return sum(
+        1
+        for row in range(1, len(grid) - 1)
+        for col in range(1, len(grid[0]) - 1)
+        if grid[row][col] == "A"
+        and {grid[row - 1][col - 1], grid[row + 1][col + 1]} == diagonal_chars
+        and {grid[row - 1][col + 1], grid[row + 1][col - 1]} == diagonal_chars
+    )
 
 
 def solve():
