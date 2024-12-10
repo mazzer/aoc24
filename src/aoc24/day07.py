@@ -56,5 +56,6 @@ def part2():
     return r
 
 
-print(part1())
-print(part2())
+def solve():
+    print(part1())
+    print(part2())
